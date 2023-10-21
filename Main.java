@@ -3,7 +3,7 @@ public class Main {
     public static Ventana ventana = new Ventana();
 
     public static Estrella[] estrellas = new Estrella[10];
-    public static Asteroid[] asteroids = new Asteroid[10];
+    public static Asteroid[] asteroids = new Asteroid[15];
 
     public static int delay = 0;
 

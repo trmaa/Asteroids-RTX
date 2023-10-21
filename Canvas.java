@@ -36,10 +36,8 @@ public class Canvas extends JPanel {
         for (int j = 0; j < 5; j++) {
             for (int i = 0; i < Main.asteroids.length; i++) {
                 this.print(g,
-                        Mcorrect.center(Main.asteroids[i].position, Player.position).x
-                                + (j == 1 ? Main.ventana.getWidth() : j == 2 ? -Main.ventana.getWidth() : 0),
-                        Mcorrect.center(Main.asteroids[i].position, Player.position).y
-                                + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
+                        Mcorrect.center(Main.asteroids[i].position, Player.position).x,
+                        Mcorrect.center(Main.asteroids[i].position, Player.position).y,
                         Main.asteroids[i].thick, Main.asteroids[i].thick, new Color(0xffff00));
             }
         }

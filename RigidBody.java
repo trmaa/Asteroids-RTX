@@ -8,7 +8,7 @@ public class RigidBody {
 
         // shoot (momentanely)
         Main.delay += 1;
-        if (Main.delay >= 1) {
+        if (Main.delay >= 3) {
             if (MyKeyListener.E) {
                 Player.shoot();
                 Main.delay = 0;
