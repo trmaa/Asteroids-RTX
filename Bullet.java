@@ -14,5 +14,14 @@ public class Bullet {
         this.position.add(
                 new vec2(Bullet.speed * Math.cos(this.angle),
                         Bullet.speed * Math.sin(this.angle)));
+
+        if (this.position.x > Main.ventana.getWidth() * 0.5)
+            this.position.x = -Main.ventana.getWidth() * 0.5;
+        if (this.position.y > Main.ventana.getHeight() * 0.5)
+            this.position.y = -Main.ventana.getHeight() * 0.5;
+        if (this.position.x < -Main.ventana.getWidth() * 0.5)
+            this.position.x = Main.ventana.getWidth() * 0.5;
+        if (this.position.y < -Main.ventana.getHeight() * 0.5)
+            this.position.y = Main.ventana.getHeight() * 0.5;
     }
 }

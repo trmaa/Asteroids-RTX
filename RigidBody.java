@@ -6,6 +6,7 @@ public class RigidBody {
         if (MyKeyListener.RIGHT)
             Player.angle += 0.3;
 
+        // shoot (momentanely)
         Main.delay += 1;
         if (Main.delay >= 3) {
             if (MyKeyListener.E) {
