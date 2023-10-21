@@ -6,7 +6,13 @@ public class Player {
     public static float minSpeed = 0.1f;
     public static float speed = 2;
 
-    public static int municion;
-
     public static RigidBody rb = new RigidBody();
+
+    public static Bullet[] blts = new Bullet[99999];
+    public static int shots = 0;
+
+    public static void shoot() {
+        Player.blts[Player.shots] = new Bullet();
+        Player.shots++;
+    }
 }

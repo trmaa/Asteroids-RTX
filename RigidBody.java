@@ -6,6 +6,14 @@ public class RigidBody {
         if (MyKeyListener.RIGHT)
             Player.angle += 0.3;
 
+        Main.delay += 1;
+        if (Main.delay >= 3) {
+            if (MyKeyListener.E) {
+                Player.shoot();
+                Main.delay = 0;
+            }
+        }
+
         // force
         if (Player.velocity.magnitude() < Player.maxSpeed)
             if (MyKeyListener.UP)

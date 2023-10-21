@@ -4,6 +4,8 @@ public class Main {
 
     public static Estrella[] estrellas = new Estrella[10];
 
+    public static int delay = 0;
+
     public static void main(String[] args) {
         for (int i = 0; i < Main.estrellas.length; i++) {
             Main.estrellas[i] = new Estrella(
@@ -27,5 +29,9 @@ public class Main {
         Main.cvs.repaint();
 
         Player.rb.move();
+
+        for (int i = 0; i < Player.shots; i++)
+            for (int j = 0; j < Bullet.step; j++)
+                Player.blts[i].move();
     }
 }

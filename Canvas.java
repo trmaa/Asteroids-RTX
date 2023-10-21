@@ -33,6 +33,11 @@ public class Canvas extends JPanel {
                         20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0xffffff));
             }
         }
+        for (int i = 0; i < Player.shots; i++)
+            this.print(g,
+                    Player.blts[i].position.x,
+                    Player.blts[i].position.y,
+                    5, 5, new Color(0xffffff));
     }
 
     public void cls(Graphics g, Color c) {
