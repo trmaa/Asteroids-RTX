@@ -20,7 +20,7 @@ public class Canvas extends JPanel {
         this.print(g,
                 Player.position.x + Math.cos(Player.angle) * 30,
                 Player.position.y + Math.sin(Player.angle) * 30,
-                5, 5, new Color(0xffffff));
+                5, 5, new Color(0xff00ff));
         for (int j = 0; j < 5; j++) {
             for (int i = 0; i < Main.estrellas.length; i++) {
                 this.print(g,
@@ -30,7 +30,7 @@ public class Canvas extends JPanel {
                         Mcorrect.center(Main.estrellas[i].position, Player.position).y * 15
                                 / Main.estrellas[i].distance
                                 + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
-                        20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0xffffff));
+                        20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0x00ffff));
             }
         }
         for (int j = 0; j < 5; j++) {
@@ -40,14 +40,18 @@ public class Canvas extends JPanel {
                                 + (j == 1 ? Main.ventana.getWidth() : j == 2 ? -Main.ventana.getWidth() : 0),
                         Mcorrect.center(Main.asteroids[i].position, Player.position).y
                                 + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
-                        Main.asteroids[i].thick, Main.asteroids[i].thick, new Color(0xffffff));
+                        Main.asteroids[i].thick, Main.asteroids[i].thick, new Color(0xffff00));
             }
         }
-        for (int i = 0; i < Player.shots; i++)
-            this.print(g,
-                    Player.blts[i].position.x,
-                    Player.blts[i].position.y,
-                    5, 5, new Color(0xffffff));
+        for (int j = 0; j < 5; j++) {
+            for (int i = 0; i < Player.shots; i++)
+                this.print(g,
+                        Player.blts[i].position.x
+                                + (j == 1 ? Main.ventana.getWidth() : j == 2 ? -Main.ventana.getWidth() : 0),
+                        Player.blts[i].position.y
+                                + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
+                        5, 5, new Color(0xff0000));
+        }
     }
 
     public void cls(Graphics g, Color c) {

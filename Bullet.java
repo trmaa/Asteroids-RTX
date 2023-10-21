@@ -2,7 +2,7 @@ public class Bullet {
     public vec2 position = new vec2(Player.position.x, Player.position.y);
     public float angle = Player.angle + 0;
 
-    public static int speed = 10;
+    public int speed = 10;
     public static int step = 10;
 
     public Bullet() {
@@ -12,16 +12,22 @@ public class Bullet {
 
     public void move() {
         this.position.add(
-                new vec2(Bullet.speed * Math.cos(this.angle),
-                        Bullet.speed * Math.sin(this.angle)));
-
-        if (this.position.x > Main.ventana.getWidth() * 0.5)
-            this.position.x = -Main.ventana.getWidth() * 0.5;
-        if (this.position.y > Main.ventana.getHeight() * 0.5)
-            this.position.y = -Main.ventana.getHeight() * 0.5;
-        if (this.position.x < -Main.ventana.getWidth() * 0.5)
-            this.position.x = Main.ventana.getWidth() * 0.5;
-        if (this.position.y < -Main.ventana.getHeight() * 0.5)
-            this.position.y = Main.ventana.getHeight() * 0.5;
+                new vec2(this.speed * Math.cos(this.angle),
+                        this.speed * Math.sin(this.angle)));
+        for (int i = 0; i < Main.asteroids.length; i++) {
+            if (this.position.x > Mcorrect.center(Main.asteroids[i].position, Player.position).x
+                    &&
+                    this.position.x < Mcorrect.center(Main.asteroids[i].position, Player.position).x
+                            + Main.asteroids[i].thick
+                    &&
+                    this.position.y < Mcorrect.center(Main.asteroids[i].position, Player.position).y
+                    &&
+                    this.position.y > Mcorrect.center(Main.asteroids[i].position, Player.position).y
+                            - Main.asteroids[i].thick) {
+                this.speed = 0;
+                this.position = new vec2(1000, 1000);
+                Main.asteroids[i].position = new vec2(9999, 9999);
+            }
+        }
     }
 }
