@@ -2,7 +2,16 @@ public class Main {
     public static Canvas cvs = new Canvas();
     public static Ventana ventana = new Ventana();
 
+    public static Estrella[] estrellas = new Estrella[10];
+
     public static void main(String[] args) {
+        for (int i = 0; i < Main.estrellas.length; i++) {
+            Main.estrellas[i] = new Estrella(
+                    new vec2(Math.random() * Main.ventana.getWidth() - Main.ventana.getWidth() * 0.5,
+                            Math.random() * Main.ventana.getHeight() - Main.ventana.getHeight() * 0.5),
+                    Math.random() * 10 + 10);
+        }
+
         while (true) {
             Main.loop();
 

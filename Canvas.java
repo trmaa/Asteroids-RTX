@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Color;
 
 public class Canvas extends JPanel {
     public MyKeyListener kl = new MyKeyListener();
@@ -22,6 +21,12 @@ public class Canvas extends JPanel {
                 Player.position.x + Math.cos(Player.angle) * 30,
                 Player.position.y + Math.sin(Player.angle) * 30,
                 5, 5, new Color(0xffffff));
+        for (int i = 0; i < Main.estrellas.length; i++) {
+            this.print(g,
+                    Mcorrect.center(Main.estrellas[i].position, Player.position).x * 10 / Main.estrellas[i].distance,
+                    Mcorrect.center(Main.estrellas[i].position, Player.position).y * 10 / Main.estrellas[i].distance,
+                    20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0xffffff));
+        }
     }
 
     public void cls(Graphics g, Color c) {
