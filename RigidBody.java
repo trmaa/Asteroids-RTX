@@ -21,5 +21,13 @@ public class RigidBody {
 
         // goto
         Player.position.add(Player.velocity);
+        if (Player.position.x > Main.ventana.getWidth() * 0.5)
+            Player.position.x = -Main.ventana.getWidth() * 0.5;
+        if (Player.position.y > Main.ventana.getHeight() * 0.5)
+            Player.position.y = -Main.ventana.getHeight() * 0.5;
+        if (Player.position.x < -Main.ventana.getWidth() * 0.5)
+            Player.position.x = Main.ventana.getWidth() * 0.5;
+        if (Player.position.y < -Main.ventana.getHeight() * 0.5)
+            Player.position.y = Main.ventana.getHeight() * 0.5;
     }
 }

@@ -21,11 +21,17 @@ public class Canvas extends JPanel {
                 Player.position.x + Math.cos(Player.angle) * 30,
                 Player.position.y + Math.sin(Player.angle) * 30,
                 5, 5, new Color(0xffffff));
-        for (int i = 0; i < Main.estrellas.length; i++) {
-            this.print(g,
-                    Mcorrect.center(Main.estrellas[i].position, Player.position).x * 10 / Main.estrellas[i].distance,
-                    Mcorrect.center(Main.estrellas[i].position, Player.position).y * 10 / Main.estrellas[i].distance,
-                    20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0xffffff));
+        for (int j = 0; j < 5; j++) {
+            for (int i = 0; i < Main.estrellas.length; i++) {
+                this.print(g,
+                        Mcorrect.center(Main.estrellas[i].position, Player.position).x * 15
+                                / Main.estrellas[i].distance
+                                + (j == 1 ? Main.ventana.getWidth() : j == 2 ? -Main.ventana.getWidth() : 0),
+                        Mcorrect.center(Main.estrellas[i].position, Player.position).y * 15
+                                / Main.estrellas[i].distance
+                                + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
+                        20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0xffffff));
+            }
         }
     }
 
