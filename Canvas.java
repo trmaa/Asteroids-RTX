@@ -17,6 +17,11 @@ public class Canvas extends JPanel {
         super.paintComponent(g);
 
         this.cls(g, new Color(0x000000));
+        this.print(g, Player.position.x, Player.position.y, 10, 10, new Color(0xffffff));
+        this.print(g,
+                Player.position.x + Math.cos(Player.angle) * 30,
+                Player.position.y + Math.sin(Player.angle) * 30,
+                5, 5, new Color(0xffffff));
     }
 
     public void cls(Graphics g, Color c) {

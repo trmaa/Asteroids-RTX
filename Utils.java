@@ -30,6 +30,12 @@ class vec3 {
         this.y += vector.y;
         this.z += vector.z;
     }
+
+    void multiply(vec3 vector) {
+        this.x *= vector.x;
+        this.y *= vector.y;
+        this.z *= vector.z;
+    }
 }
 
 class vec2 {
@@ -48,5 +54,16 @@ class vec2 {
     void add(vec2 vector) {
         this.x += vector.x;
         this.y += vector.y;
+    }
+
+    void multiply(vec2 vector) {
+        this.x *= vector.x;
+        this.y *= vector.y;
+    }
+}
+
+class Mcorrect {
+    static vec2 center(vec2 point, vec2 o) {
+        return new vec2(point.x - o.x, point.y - o.y);
     }
 }

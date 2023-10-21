@@ -16,5 +16,7 @@ public class Main {
 
     public static void loop() {
         Main.cvs.repaint();
+
+        Player.rb.move();
     }
 }
