@@ -38,5 +38,6 @@ public class Main {
         for (int i = 0; i < Player.shots; i++)
             for (int j = 0; j < Bullet.step; j++)
                 Player.blts[i].move();
+        Player.getDamaged();
     }
 }

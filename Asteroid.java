@@ -17,5 +17,6 @@ public class Asteroid {
         } else {
             this.thick -= Mcorrect.redondear(this.thick*0.5);
         }
+        Player.points++;
     }
 }

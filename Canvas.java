@@ -48,6 +48,8 @@ public class Canvas extends JPanel {
                                 + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
                         5, 5, new Color(0xff0000));
         }
+        this.print(g,-Main.ventana.getWidth()*0.5+50,Main.ventana.getHeight()*0.5-75,Player.hp*1,25,new Color(0xffffff));
+        this.printext(g,Player.points+"",Main.ventana.getWidth()*0.5+50, -Main.ventana.getHeight()*0.5+350,"consolas", 1000,new Color(0xffffff));
     }
 
     public void cls(Graphics g, Color c) {
@@ -61,9 +63,10 @@ public class Canvas extends JPanel {
                 Utils.redondear(Main.ventana.getHeight() * 0.5 + y), Utils.redondear(w), Utils.redondear(h));
     }
 
-    public void printext(Graphics g, String msg, int x, int y, String fnt, int d, Color c) {
+    public void printext(Graphics g, String msg, double x, double y, String fnt, int d, Color c) {
         g.setColor(c);
         g.setFont(new Font(fnt, Font.BOLD, d));
-        g.drawString(msg, x, y);
+        g.drawString(msg, Utils.redondear(Main.ventana.getWidth() * 0.5 + x),
+                Utils.redondear(Main.ventana.getHeight() * 0.5 + y));
     }
 }
