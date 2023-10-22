@@ -19,24 +19,17 @@ public class Canvas extends JPanel {
 
         this.cls(g, new Color(0x000000));
 
-        Color innerColor = new Color(0x00ffff);
+        Color innerColor = new Color(0x00aaaa);
+        Color midColor = new Color(0x110033);
         Color outerColor = new Color(0x000000);
+
         drawCircularGradient(g, Mcorrect.redondear(Player.position.x),
-                Mcorrect.redondear(Player.position.y), 128,
-                innerColor, outerColor);
+                Mcorrect.redondear(Player.position.y), 500,
+                innerColor, midColor, outerColor);
+        this.printImg(g, Player.position.x - 16, Player.position.y - 16, 32, 32, Player.angle, Player.sprite);
 
         for (int j = 0; j < 5; j++) {
             for (int i = 0; i < Main.estrellas.length; i++) {
-                drawCircularGradient(g,
-                        Mcorrect.redondear(
-                                Mcorrect.center(
-                                        Main.estrellas[i].position, Player.position).x * 15 / Main.estrellas[i].distance
-                                        + (j == 1 ? Main.ventana.getWidth() : j == 2 ? -Main.ventana.getWidth() : 0)),
-                        Mcorrect.redondear(
-                                Mcorrect.center(
-                                        Main.estrellas[i].position, Player.position).y * 15 / Main.estrellas[i].distance
-                                        + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0)),
-                        Mcorrect.redondear((50 - Main.estrellas[i].distance) * 2), innerColor, outerColor);
                 this.print(g,
                         Mcorrect.center(Main.estrellas[i].position, Player.position).x * 15
                                 / Main.estrellas[i].distance
@@ -65,38 +58,21 @@ public class Canvas extends JPanel {
                         8, 8, new Color(0xffffff));
             }
         }
-        this.printImg(g, Player.position.x - 16, Player.position.y - 16, 32, 32, Player.angle, Player.sprite);
-        this.print(g,
-                Player.position.x + Math.cos(Player.angle) * 60,
-                Player.position.y + Math.sin(Player.angle) * 60,
-                5, 5, new Color(0xff00ff));
         this.print(g, -Main.ventana.getWidth() * 0.5 + 100, Main.ventana.getHeight() * 0.5 - 132, Player.hp * 2, 32,
                 new Color(0xffffff));
     }
 
     public void printImg(Graphics g, double x, double y, double w, double h, double angle, BufferedImage image) {
-        // Dibuja la imagen en las coordenadas (x, y) con el ancho y alto dados y una
-        // rotación dada en grados
         Graphics2D g2d = (Graphics2D) g;
-
-        // Calcula el centro de la imagen
         double centerX = Utils.redondear(Main.ventana.getWidth() * 0.5 + x + w / 2);
         double centerY = Utils.redondear(Main.ventana.getHeight() * 0.5 + y + h / 2);
-
-        // Crea una transformación de rotación
         AffineTransform at = new AffineTransform();
         at.translate(centerX, centerY);
-        at.rotate(angle - Math.PI * 1.5); // Convierte el ángulo a radianes
+        at.rotate(angle - Math.PI * 1.5);
         at.translate(-centerX, -centerY);
-
-        // Aplica la transformación al contexto de gráficos
         g2d.setTransform(at);
-
-        // Dibuja la imagen
         g2d.drawImage(image, Utils.redondear(Main.ventana.getWidth() * 0.5 + x),
                 Utils.redondear(Main.ventana.getHeight() * 0.5 + y), Utils.redondear(w), Utils.redondear(h), null);
-
-        // Restaura la transformación original
         g2d.setTransform(new AffineTransform());
     }
 
@@ -118,14 +94,26 @@ public class Canvas extends JPanel {
                 Utils.redondear(Main.ventana.getHeight() * 0.5 + y));
     }
 
-    public void drawCircularGradient(Graphics g, int centerX, int centerY, int radius, Color innerColor,
-            Color outerColor) {
+    public void drawCircularGradient(Graphics g, int centerX, int centerY, int radius, Color color1, Color color2,
+            Color color3) {
         for (int r = radius; r > 0; r--) {
             float ratio = (float) (radius - r) / radius;
-            int red = (int) (innerColor.getRed() + (1 - ratio) * (outerColor.getRed() - innerColor.getRed()));
-            int green = (int) (innerColor.getGreen() + (1 - ratio) * (outerColor.getGreen() - innerColor.getGreen()));
-            int blue = (int) (innerColor.getBlue() + (1 - ratio) * (outerColor.getBlue() - innerColor.getBlue()));
-            Color gradientColor = new Color(red, green, blue, 5);
+            Color gradientColor;
+
+            if (ratio < 0.5f) {
+                float subRatio = ratio / 0.5f;
+                int red = (int) (color3.getRed() + subRatio * (color2.getRed() - color3.getRed()));
+                int green = (int) (color3.getGreen() + subRatio * (color2.getGreen() - color3.getGreen()));
+                int blue = (int) (color3.getBlue() + subRatio * (color2.getBlue() - color3.getBlue()));
+                gradientColor = new Color(red, green, blue);
+            } else {
+                float subRatio = (ratio - 0.5f) / 0.5f;
+                int red = (int) (color2.getRed() + subRatio * (color1.getRed() - color2.getRed()));
+                int green = (int) (color2.getGreen() + subRatio * (color1.getGreen() - color2.getGreen()));
+                int blue = (int) (color2.getBlue() + subRatio * (color1.getBlue() - color2.getBlue()));
+                gradientColor = new Color(red, green, blue);
+            }
+
             g.setColor(gradientColor);
             g.fillOval(Mcorrect.redondear(Main.ventana.getWidth() * 0.5 + centerX) - r,
                     Mcorrect.redondear(Main.ventana.getHeight() * 0.5 + centerY) - r, 2 * r, 2 * r);
