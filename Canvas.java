@@ -16,11 +16,6 @@ public class Canvas extends JPanel {
         super.paintComponent(g);
 
         this.cls(g, new Color(0x000000));
-        this.print(g, Player.position.x, Player.position.y, 10, 10, new Color(0xffffff));
-        this.print(g,
-                Player.position.x + Math.cos(Player.angle) * 30,
-                Player.position.y + Math.sin(Player.angle) * 30,
-                5, 5, new Color(0xff00ff));
         for (int j = 0; j < 5; j++) {
             for (int i = 0; i < Main.estrellas.length; i++) {
                 this.print(g,
@@ -48,8 +43,15 @@ public class Canvas extends JPanel {
                                 + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
                         5, 5, new Color(0xff0000));
         }
-        this.print(g,-Main.ventana.getWidth()*0.5+50,Main.ventana.getHeight()*0.5-75,Player.hp*1,25,new Color(0xffffff));
-        this.printext(g,Player.points+"",Main.ventana.getWidth()*0.5+50, -Main.ventana.getHeight()*0.5+350,"consolas", 1000,new Color(0xffffff));
+        this.print(g, Player.position.x, Player.position.y, 10, 10, new Color(0xffffff));
+        this.print(g,
+                Player.position.x + Math.cos(Player.angle) * 30,
+                Player.position.y + Math.sin(Player.angle) * 30,
+                5, 5, new Color(0xff00ff));
+        this.print(g, -Main.ventana.getWidth() * 0.5 + 100, Main.ventana.getHeight() * 0.5 - 132, Player.hp * 2, 32,
+                new Color(0xffffff));
+        // this.printext(g, Player.points + "", Main.ventana.getWidth() * 0.5 + 50,
+        // -Main.ventana.getHeight() * 0.5 + 350,"arial", 1000, new Color(0xffffff));
     }
 
     public void cls(Graphics g, Color c) {

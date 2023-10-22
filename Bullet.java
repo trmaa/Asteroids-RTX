@@ -20,10 +20,10 @@ public class Bullet {
                     this.position.x < Mcorrect.center(Main.asteroids[i].position, Player.position).x
                             + Main.asteroids[i].thick
                     &&
-                    this.position.y < Mcorrect.center(Main.asteroids[i].position, Player.position).y
-                    &&
                     this.position.y > Mcorrect.center(Main.asteroids[i].position, Player.position).y
-                            - Main.asteroids[i].thick) {
+                    &&
+                    this.position.y < Mcorrect.center(Main.asteroids[i].position, Player.position).y
+                            + Main.asteroids[i].thick) {
                 this.speed = 0;
                 this.position = new vec2(1000, 1000);
                 Main.asteroids[i].destroy();

@@ -4,7 +4,7 @@ public class Main {
 
     public static Estrella[] estrellas = new Estrella[10];
     public static Asteroid[] asteroids = new Asteroid[9999];
-    public static int asteroidn = 15;
+    public static int asteroidn = 10;
 
     public static int delay = 0;
 

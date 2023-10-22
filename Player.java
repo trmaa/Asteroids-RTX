@@ -18,8 +18,9 @@ public class Player {
         Player.blts[Player.shots] = new Bullet();
         Player.shots++;
     }
-    public static void getDamaged(){
-        if(Player.hp <= 0){
+
+    public static void getDamaged() {
+        if (Player.hp <= 0) {
             Player.position = null;
         }
         for (int i = 0; i < Main.asteroidn; i++) {
@@ -28,11 +29,11 @@ public class Player {
                     Player.position.x < Mcorrect.center(Main.asteroids[i].position, Player.position).x
                             + Main.asteroids[i].thick
                     &&
-                    Player.position.y < Mcorrect.center(Main.asteroids[i].position, Player.position).y
-                    &&
                     Player.position.y > Mcorrect.center(Main.asteroids[i].position, Player.position).y
-                            - Main.asteroids[i].thick) {
-                Player.hp--;
+                    &&
+                    Player.position.y < Mcorrect.center(Main.asteroids[i].position, Player.position).y
+                            + Main.asteroids[i].thick) {
+                Player.hp -= 10;
             }
         }
     }
