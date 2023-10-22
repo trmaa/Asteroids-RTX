@@ -2,7 +2,7 @@ public class Main {
     public static Canvas cvs = new Canvas();
     public static Ventana ventana = new Ventana();
 
-    public static Estrella[] estrellas = new Estrella[10];
+    public static Estrella[] estrellas = new Estrella[5];
     public static Asteroid[] asteroids = new Asteroid[9999];
     public static int asteroidn = 10;
 
