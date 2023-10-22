@@ -63,6 +63,16 @@ class vec2 {
 }
 
 class Mcorrect {
+    static int redondear(double n) {
+        int res = 0;
+        while (n >= 1 || n <= -1) {
+            n += n > 0 ? -1 : 1;
+            res += n < 0 ? -1 : 1;
+        }
+        res += n > 0.5 ? 1 : 0;
+        return res;
+    }
+
     static vec2 center(vec2 point, vec2 o) {
         return new vec2(point.x - o.x, point.y - o.y);
     }

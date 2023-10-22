@@ -33,13 +33,11 @@ public class Canvas extends JPanel {
                         20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0x00ffff));
             }
         }
-        for (int j = 0; j < 5; j++) {
-            for (int i = 0; i < Main.asteroids.length; i++) {
-                this.print(g,
-                        Mcorrect.center(Main.asteroids[i].position, Player.position).x,
-                        Mcorrect.center(Main.asteroids[i].position, Player.position).y,
-                        Main.asteroids[i].thick, Main.asteroids[i].thick, new Color(0xffff00));
-            }
+        for (int i = 0; i < Main.asteroidn; i++) {
+            this.print(g,
+                    Mcorrect.center(Main.asteroids[i].position, Player.position).x,
+                    Mcorrect.center(Main.asteroids[i].position, Player.position).y,
+                    Main.asteroids[i].thick, Main.asteroids[i].thick, new Color(0xffff00));
         }
         for (int j = 0; j < 5; j++) {
             for (int i = 0; i < Player.shots; i++)

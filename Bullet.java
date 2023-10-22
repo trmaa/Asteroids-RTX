@@ -14,7 +14,7 @@ public class Bullet {
         this.position.add(
                 new vec2(this.speed * Math.cos(this.angle),
                         this.speed * Math.sin(this.angle)));
-        for (int i = 0; i < Main.asteroids.length; i++) {
+        for (int i = 0; i < Main.asteroidn; i++) {
             if (this.position.x > Mcorrect.center(Main.asteroids[i].position, Player.position).x
                     &&
                     this.position.x < Mcorrect.center(Main.asteroids[i].position, Player.position).x
@@ -26,7 +26,7 @@ public class Bullet {
                             - Main.asteroids[i].thick) {
                 this.speed = 0;
                 this.position = new vec2(1000, 1000);
-                Main.asteroids[i].position = new vec2(9999, 9999);
+                Main.asteroids[i].destroy();
             }
         }
     }
