@@ -14,13 +14,20 @@ public class RigidBody {
                 Main.delay = 0;
             }
         }
+        for (int i = 0; i < Main.asteroidn; i++) {
+            Main.asteroids[i].angle += Main.asteroids[i].velocity.x * 0.05;
+            Main.asteroids[i].position.add(Main.asteroids[i].velocity);
+        }
 
-        // force
+        // force (momentanely sprite)
         if (Player.velocity.magnitude() < Player.maxSpeed)
-            if (MyKeyListener.UP)
+            if (MyKeyListener.UP) {
                 Player.velocity.add(
                         new vec2(Math.cos(Player.angle) * Player.speed,
                                 Math.sin(Player.angle) * Player.speed));
+                Player.sprite = ImageLoader.cargarImagen("sprites/Player1.png");
+            } else
+                Player.sprite = ImageLoader.cargarImagen("sprites/Player0.png");
 
         // friction
         if (Player.velocity.magnitude() < Player.minSpeed)

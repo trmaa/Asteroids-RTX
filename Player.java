@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+
 public class Player {
     public static vec2 position = new vec2(0, 0);
     public static float angle = 0;
@@ -13,6 +15,8 @@ public class Player {
 
     public static Bullet[] blts = new Bullet[99999];
     public static int shots = 0;
+
+    public static BufferedImage sprite = ImageLoader.cargarImagen("sprites/Player0.png");
 
     public static void shoot() {
         Player.blts[Player.shots] = new Bullet();

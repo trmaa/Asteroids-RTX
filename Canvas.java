@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
 
 public class Canvas extends JPanel {
     public MyKeyListener kl = new MyKeyListener();
@@ -47,10 +49,11 @@ public class Canvas extends JPanel {
             }
         }
         for (int i = 0; i < Main.asteroidn; i++) {
-            this.print(g,
+            this.printImg(g,
                     Mcorrect.center(Main.asteroids[i].position, Player.position).x,
                     Mcorrect.center(Main.asteroids[i].position, Player.position).y,
-                    Main.asteroids[i].thick, Main.asteroids[i].thick, new Color(0xffff00));
+                    Main.asteroids[i].thick, Main.asteroids[i].thick, Main.asteroids[i].angle,
+                    Main.asteroids[i].sprite);
         }
         for (int j = 0; j < 5; j++) {
             for (int i = 0; i < Player.shots; i++) {
@@ -59,18 +62,42 @@ public class Canvas extends JPanel {
                                 + (j == 1 ? Main.ventana.getWidth() : j == 2 ? -Main.ventana.getWidth() : 0),
                         Player.blts[i].position.y
                                 + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
-                        5, 5, new Color(0xff0000));
+                        8, 8, new Color(0xffffff));
             }
         }
-        this.print(g, Player.position.x, Player.position.y, 10, 10, new Color(0xffffff));
+        this.printImg(g, Player.position.x - 16, Player.position.y - 16, 32, 32, Player.angle, Player.sprite);
         this.print(g,
-                Player.position.x + Math.cos(Player.angle) * 30,
-                Player.position.y + Math.sin(Player.angle) * 30,
+                Player.position.x + Math.cos(Player.angle) * 60,
+                Player.position.y + Math.sin(Player.angle) * 60,
                 5, 5, new Color(0xff00ff));
         this.print(g, -Main.ventana.getWidth() * 0.5 + 100, Main.ventana.getHeight() * 0.5 - 132, Player.hp * 2, 32,
                 new Color(0xffffff));
-        // this.printext(g, Player.points + "", Main.ventana.getWidth() * 0.5 + 50,
-        // -Main.ventana.getHeight() * 0.5 + 350,"arial", 1000, new Color(0xffffff));
+    }
+
+    public void printImg(Graphics g, double x, double y, double w, double h, double angle, BufferedImage image) {
+        // Dibuja la imagen en las coordenadas (x, y) con el ancho y alto dados y una
+        // rotación dada en grados
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Calcula el centro de la imagen
+        double centerX = Utils.redondear(Main.ventana.getWidth() * 0.5 + x + w / 2);
+        double centerY = Utils.redondear(Main.ventana.getHeight() * 0.5 + y + h / 2);
+
+        // Crea una transformación de rotación
+        AffineTransform at = new AffineTransform();
+        at.translate(centerX, centerY);
+        at.rotate(angle - Math.PI * 1.5); // Convierte el ángulo a radianes
+        at.translate(-centerX, -centerY);
+
+        // Aplica la transformación al contexto de gráficos
+        g2d.setTransform(at);
+
+        // Dibuja la imagen
+        g2d.drawImage(image, Utils.redondear(Main.ventana.getWidth() * 0.5 + x),
+                Utils.redondear(Main.ventana.getHeight() * 0.5 + y), Utils.redondear(w), Utils.redondear(h), null);
+
+        // Restaura la transformación original
+        g2d.setTransform(new AffineTransform());
     }
 
     public void cls(Graphics g, Color c) {
