@@ -19,6 +19,8 @@ public class Main {
             Main.asteroids[i] = new Asteroid();
         }
 
+        Audio.play("snd/song.wav");
+
         while (true) {
             Main.loop();
 
