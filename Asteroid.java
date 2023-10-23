@@ -26,5 +26,6 @@ public class Asteroid {
             this.thick -= Mcorrect.redondear(this.thick * 0.5);
         }
         Player.points++;
+        Audio.play("snd/explosion.wav");
     }
 }

@@ -11,12 +11,22 @@ public class RigidBody {
         if (Main.delay >= 3) {
             if (MyKeyListener.E) {
                 Player.shoot();
+                Audio.play("snd/laser.wav");
                 Main.delay = 0;
             }
         }
         for (int i = 0; i < Main.asteroidn; i++) {
             Main.asteroids[i].angle += Main.asteroids[i].velocity.x * 0.05;
             Main.asteroids[i].position.add(Main.asteroids[i].velocity);
+
+            if (Main.asteroids[i].position.x > Main.ventana.getWidth() * 0.5)
+                Main.asteroids[i].position.x = -Main.ventana.getWidth() * 0.5;
+            if (Main.asteroids[i].position.y > Main.ventana.getHeight() * 0.5)
+                Main.asteroids[i].position.y = -Main.ventana.getHeight() * 0.5;
+            if (Main.asteroids[i].position.x < -Main.ventana.getWidth() * 0.5)
+                Main.asteroids[i].position.x = Main.ventana.getWidth() * 0.5;
+            if (Main.asteroids[i].position.y < -Main.ventana.getHeight() * 0.5)
+                Main.asteroids[i].position.y = Main.ventana.getHeight() * 0.5;
         }
 
         // force (momentanely sprite)

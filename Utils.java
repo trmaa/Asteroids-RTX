@@ -1,3 +1,5 @@
+import javax.sound.sampled.*;
+
 public class Utils {
     public static int redondear(double n) {
         int res = 0;
@@ -75,5 +77,38 @@ class Mcorrect {
 
     static vec2 center(vec2 point, vec2 o) {
         return new vec2(point.x - o.x, point.y - o.y);
+    }
+}
+
+class Audio {
+    static void play(String src) {
+        Thread audioThread = new Thread(() -> {
+            try {
+                // Obtén un Clip de audio
+                Clip clip = AudioSystem.getClip();
+
+                // Carga el archivo de audio
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
+                        Audio.class.getResourceAsStream(src));
+
+                // Abre el Clip y carga los datos del audio
+                clip.open(audioInputStream);
+
+                // Reproduce el audio
+                clip.start();
+
+                // Espera a que termine la reproducción
+                Thread.sleep(clip.getMicrosecondLength() / 1000);
+
+                // Cierra el Clip y libera los recursos
+                clip.close();
+                audioInputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Inicia el subproceso de audio
+        audioThread.start();
     }
 }
