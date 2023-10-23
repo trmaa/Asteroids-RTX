@@ -3,7 +3,7 @@ public class Main {
     public static Ventana ventana = new Ventana();
 
     public static Estrella[] estrellas = new Estrella[10];
-    public static Asteroid[] asteroids = new Asteroid[9999];
+    public static Asteroid[] asteroids = new Asteroid[999];
     public static int asteroidn = 10;
 
     public static int delay = 0;
@@ -13,7 +13,7 @@ public class Main {
             Main.estrellas[i] = new Estrella(
                     new vec2(Math.random() * Main.ventana.getWidth() - Main.ventana.getWidth() * 0.5,
                             Math.random() * Main.ventana.getHeight() - Main.ventana.getHeight() * 0.5),
-                    Math.random() * 10 + 10);
+                    Math.random() * 5 + 5);
         }
         for (int i = 0; i < asteroidn; i++) {
             Main.asteroids[i] = new Asteroid();

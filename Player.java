@@ -13,7 +13,7 @@ public class Player {
     public static int hp = 100;
     public static int points = 0;
 
-    public static Bullet[] blts = new Bullet[99999];
+    public static Bullet[] blts = new Bullet[9999];
     public static int shots = 0;
 
     public static BufferedImage sprite = ImageLoader.cargarImagen("sprites/Player0.png");

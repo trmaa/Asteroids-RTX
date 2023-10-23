@@ -23,7 +23,7 @@ public class Canvas extends JPanel {
         Color midColor = new Color(0x110033);
         Color outerColor = new Color(0x000000);
 
-        drawCircularGradient(g, Mcorrect.redondear(Player.position.x),
+        this.gradiente(g, Mcorrect.redondear(Player.position.x),
                 Mcorrect.redondear(Player.position.y), 500,
                 innerColor, midColor, outerColor);
         this.printImg(g, Player.position.x - 16, Player.position.y - 16, 32, 32, Player.angle, Player.sprite);
@@ -37,7 +37,7 @@ public class Canvas extends JPanel {
                         Mcorrect.center(Main.estrellas[i].position, Player.position).y * 15
                                 / Main.estrellas[i].distance
                                 + (j == 3 ? Main.ventana.getHeight() : j == 4 ? -Main.ventana.getHeight() : 0),
-                        20 - Main.estrellas[i].distance, 20 - Main.estrellas[i].distance, new Color(0xffffff));
+                        10 - Main.estrellas[i].distance, 10 - Main.estrellas[i].distance, new Color(0xffffff));
 
             }
         }
@@ -58,8 +58,12 @@ public class Canvas extends JPanel {
                         8, 8, new Color(0xffffff));
             }
         }
+        this.print(g, -Main.ventana.getWidth() * 0.5 + 100, Main.ventana.getHeight() * 0.5 - 132, 200, 32,
+                new Color(0, 255, 255, 50));
         this.print(g, -Main.ventana.getWidth() * 0.5 + 100, Main.ventana.getHeight() * 0.5 - 132, Player.hp * 2, 32,
                 new Color(0xffffff));
+        this.printText(g, Player.points + "", -Main.ventana.getWidth() * 0.5 + 100,
+                -Main.ventana.getHeight() * 0.5 + 100, "Monospaced", 50, Color.WHITE);
     }
 
     public void printImg(Graphics g, double x, double y, double w, double h, double angle, BufferedImage image) {
@@ -87,14 +91,17 @@ public class Canvas extends JPanel {
                 Utils.redondear(Main.ventana.getHeight() * 0.5 + y), Utils.redondear(w), Utils.redondear(h));
     }
 
-    public void printext(Graphics g, String msg, double x, double y, String fnt, int d, Color c) {
-        g.setColor(c);
-        g.setFont(new Font(fnt, Font.BOLD, d));
-        g.drawString(msg, Utils.redondear(Main.ventana.getWidth() * 0.5 + x),
-                Utils.redondear(Main.ventana.getHeight() * 0.5 + y));
+    public void printText(Graphics g, String msg, double x, double y, String fnt, int d, Color c) {
+        if (msg != null && !msg.isEmpty()) {
+            g.setColor(c);
+            g.setFont(new Font(fnt, Font.BOLD, d));
+            int drawX = Utils.redondear(Main.ventana.getWidth() * 0.5 + x);
+            int drawY = Utils.redondear(Main.ventana.getHeight() * 0.5 + y);
+            g.drawString(msg, drawX, drawY);
+        }
     }
 
-    public void drawCircularGradient(Graphics g, int centerX, int centerY, int radius, Color color1, Color color2,
+    public void gradiente(Graphics g, int centerX, int centerY, int radius, Color color1, Color color2,
             Color color3) {
         for (int r = radius; r > 0; r--) {
             float ratio = (float) (radius - r) / radius;

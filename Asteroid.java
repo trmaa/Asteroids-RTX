@@ -12,7 +12,7 @@ public class Asteroid {
         this.position = new vec2(
                 Math.random() * Main.ventana.getWidth() * 2 - Main.ventana.getWidth(),
                 Math.random() * Main.ventana.getHeight() * 2 - Main.ventana.getHeight());
-        this.velocity = new vec2(Math.random() * 2 - 1, Math.random() * 2 - 1);
+        this.velocity = new vec2(Math.random() * 12 - 6, Math.random() * 16 - 6);
         this.thick = Utils.redondear(Math.random() * 128 + 64);
         this.sprite = Math.random() > 0.5 ? ImageLoader.cargarImagen("sprites/Asteroide0.png")
                 : ImageLoader.cargarImagen("sprites/Asteroide1.png");

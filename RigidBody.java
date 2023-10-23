@@ -33,7 +33,7 @@ public class RigidBody {
         if (Player.velocity.magnitude() < Player.minSpeed)
             Player.velocity = new vec2(0, 0);
 
-        Player.velocity.multiply(new vec2(0.97, 0.97));
+        Player.velocity.multiply(new vec2(0.99, 0.99));
 
         // goto
         Player.position.add(Player.velocity);
