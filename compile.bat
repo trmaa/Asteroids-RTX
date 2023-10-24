@@ -1,5 +1,7 @@
 javac -d . *.java
 
-jar cfe Universo.jar Main *.class
+jar cfe Asteroids.jar Main *.class
 
-java -jar Universo.jar
+del *.class
+
+java -jar Asteroids.jar
